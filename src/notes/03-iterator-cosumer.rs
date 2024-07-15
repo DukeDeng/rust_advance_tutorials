@@ -12,4 +12,10 @@ fn main() {
 
     // 以下代码会报错，因为 `sum` 拿到了迭代器 `v1_iter` 的所有权
     // println!("{:?}",v1_iter);
+    let v2: Vec<i32> = vec![1, 2, 3];
+
+    let v3: Vec<_> = v2.iter().map(|x| x + 1).collect();
+
+    assert_eq!(v3, vec![2, 3, 4]);
+
 }
