@@ -1,0 +1,12 @@
+[package]
+name = "rust_advance_tutorials_benches"
+version = "0.1.0"
+edition = "2021"
+
+
+[dependencies]
+rust_advance_tutorials = { path = "../" }
+
+[[bench]]
+name = "03-iterator-bench"
+path = "03-iterator-bench.rs"

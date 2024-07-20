@@ -6,3 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+rand ={ version = "0.8.4", features = ["small_rng"] }
+test ={ version = "1.79.0", path = "tests" }
+
+[dev-dependencies]
+test = { version = "1.79.0", path = "tests" }
