@@ -1,3 +1,5 @@
+use std::convert::TryInto;
+
 fn main(){
     let a = 3.1 as i8;
     let b = 100_i8 as i32;
@@ -15,4 +17,19 @@ fn main(){
     }
     assert_eq!(values[1], 3);
 
+    let a: u8 = 10;
+    let b: u16 = 100;
+
+    // let b_: u8 = b.try_into().unwrap();
+    let b_: u8 = match b.try_into() {
+        Ok(b1) => b1,
+        Err(e) => {
+            println!("{:?}", e.to_string());
+            0
+        }
+    };
+
+    if a < b_ {
+        println!("Ten is less than one hundred.");
+    }
 }
