@@ -1,4 +1,5 @@
 use std::convert::TryInto;
+use std::sync::Arc;
 
 fn main(){
     let a = 3.1 as i8;
@@ -32,4 +33,12 @@ fn main(){
     if a < b_ {
         println!("Ten is less than one hundred.");
     }
+}
+
+#[derive(Clone)]
+struct Container<T> (Arc<T>);
+
+fn clone_containers<T>(foo: &Container<i32>, bar: Container<T>) {
+    let foo_clone = foo.clone();
+    let bar_clone = bar.clone();
 }
