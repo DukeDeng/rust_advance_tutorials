@@ -33,12 +33,38 @@ fn main(){
     if a < b_ {
         println!("Ten is less than one hundred.");
     }
+
+    let pointer = foo as *const ();
+    let function = unsafe {
+        // 将裸指针转换为函数指针
+        std::mem::transmute::<*const (), fn() -> i32>(pointer)
+    };
+    assert_eq!(function(), 0);
 }
 
 #[derive(Clone)]
-struct Container<T> (Arc<T>);
+struct Container<T>(Arc<T>);
 
-fn clone_containers<T>(foo: &Container<i32>, bar: Container<T>) {
-    let foo_clone = foo.clone();
-    let bar_clone = bar.clone();
+fn clone_containers<T>(foo: &Container<i32>, bar: Container<T>) where T: Clone {
+    let _foo_clone = foo.clone();
+    let _bar_clone = bar.clone();
+}
+
+fn foo() -> i32 {
+    0
+}
+
+struct Foo {
+    x: u32,
+    y: u16,
+}
+
+struct Bar {
+    a: u32,
+    b: u16,
+}
+
+fn reinterpret(foo: Foo) -> Bar {
+    let Foo { x, y } = foo;
+    Bar { a: x, b: y }
 }
